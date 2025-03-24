@@ -4,7 +4,7 @@
 public class OFWBSystemDatabase {
 
 	/**
-	 * Represents my head the current status of the OFWB system, which may be Dormant, PreparingForBookings, BookingsOpen, BookingsClosed, and WorkshopOn. These are represented in the design as integers but may be implemented in any appropriate way.
+	 * Represents the current status of the OFWB system, which may be Dormant, PreparingForBookings, BookingsOpen, BookingsClosed, and WorkshopOn. These are represented in the design as integers but may be implemented in any appropriate way.
 	 */
 	private int systemStatus;
 	/**
