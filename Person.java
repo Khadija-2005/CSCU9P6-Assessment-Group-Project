@@ -1,12 +1,20 @@
-/**
- * This class represents a person in general.
- */
-public class Person {
 
-	private string name;
-	/**
-	 * A unique identifier for the person.
-	 */
-	private string email;
 
+// Base class representing a person
+class Person {
+    protected String name;
+    protected String email;
+    
+    public Person(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public String getEmail() {
+        return email;
+    }
 }
