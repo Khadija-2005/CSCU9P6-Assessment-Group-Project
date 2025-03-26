@@ -6,10 +6,10 @@
  * There should be only one instance of this class.
  */
 public class SystemTimer {
+    private DateAndTime now;
 
-	/**
-	 * The current date and time.
-	 */
-	private DateAndTime now;
-
+    public void incrementTime(int increment) {
+        now.setTime(now.getTime() + increment);
+        System.out.println("Time incremented.");
+    }
 }
