@@ -3,7 +3,7 @@
  */
 import java.util.ArrayList;
 
-public class OFWBSystemDatabase {
+/*public class OFWBSystemDatabase {
     private int systemStatus;
     private DateAndTime bookingsOpenTime, bookingsCloseTime, workshopStartTime, workshopEndTime;
     private int classDuration;
@@ -35,5 +35,51 @@ public class OFWBSystemDatabase {
     public void bookClassTimeslots(Participant participant) {
         // Booking logic
         System.out.println("Timeslots booked for " + participant.getName());
+    }
+}*/
+
+class OFWBSystemDatabase {
+    public static final int DORMANT = 0;
+    public static final int PREPARING_FOR_BOOKINGS = 1;
+    public static final int BOOKINGS_OPEN = 2;
+    public static final int BOOKINGS_CLOSED = 3;
+    public static final int WORKSHOP_ON = 4;
+    
+    private static int systemState = DORMANT;
+    private static ArrayList<Trainer> trainers = new ArrayList<>();
+    private static ArrayList<Participant> participants = new ArrayList<>();
+    private static ArrayList<String> bookedClasses = new ArrayList<>();
+    private static SystemTimer systemTimer = new SystemTimer();
+    
+    public static int getSystemState() {
+        return systemState;
+    }
+    
+    public static void setSystemState(int newState) {
+        systemState = newState;
+    }
+    
+    public static void addTrainer(Trainer trainer) {
+        trainers.add(trainer);
+    }
+    
+    public static void addParticipant(Participant participant) {
+        participants.add(participant);
+    }
+    
+    public static boolean bookClass(String participantName, String classType) {
+        if (systemState == BOOKINGS_OPEN) {
+            bookedClasses.add(participantName + " booked " + classType);
+            return true;
+        }
+        return false;
+    }
+    
+    public static ArrayList<String> getBookedClasses() {
+        return bookedClasses;
+    }
+    
+    public static void advanceTime() {
+        systemTimer.advanceTime();
     }
 }

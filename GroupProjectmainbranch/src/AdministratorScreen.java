@@ -3,7 +3,7 @@
  * It is a Boundary class.
  * In terms of the MVC pattern, it is also a View and a Controller.
  */
-import javax.swing.*;
+/*import javax.swing.*;
 
 public class AdministratorScreen {
     public AdministratorScreen() {
@@ -29,5 +29,40 @@ public class AdministratorScreen {
     private void viewClassLogs() {
         // Display logs of past classes
         System.out.println("Class logs displayed.");
+    }
+}*/
+
+import javax.swing.*;
+import java.awt.*;
+
+class AdministratorScreen extends JFrame {
+    private JButton setupWorkshopButton, manageTrainersButton, viewLogsButton, openBookingsButton, startWorkshopButton, advanceTimeButton;
+    
+    public AdministratorScreen() {
+        setTitle("Administrator Panel");
+        setSize(400, 300);
+        setLayout(new GridLayout(6, 1));
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        setupWorkshopButton = new JButton("Setup Workshop");
+        manageTrainersButton = new JButton("Manage Trainers");
+        viewLogsButton = new JButton("View Logs");
+        openBookingsButton = new JButton("Open Bookings");
+        startWorkshopButton = new JButton("Start Workshop");
+        advanceTimeButton = new JButton("Advance Time");
+        
+        setupWorkshopButton.addActionListener(e -> OFWBSystemDatabase.setSystemState(OFWBSystemDatabase.PREPARING_FOR_BOOKINGS));
+        manageTrainersButton.addActionListener(e -> new TrainerScreen().setVisible(true));
+        viewLogsButton.addActionListener(e -> JOptionPane.showMessageDialog(this, "Class logs:\n" + String.join("\n", OFWBSystemDatabase.getBookedClasses())));
+        openBookingsButton.addActionListener(e -> OFWBSystemDatabase.setSystemState(OFWBSystemDatabase.BOOKINGS_OPEN));
+        startWorkshopButton.addActionListener(e -> OFWBSystemDatabase.setSystemState(OFWBSystemDatabase.WORKSHOP_ON));
+        advanceTimeButton.addActionListener(e -> OFWBSystemDatabase.advanceTime());
+        
+        add(setupWorkshopButton);
+        add(manageTrainersButton);
+        add(viewLogsButton);
+        add(openBookingsButton);
+        add(startWorkshopButton);
+        add(advanceTimeButton);
     }
 }

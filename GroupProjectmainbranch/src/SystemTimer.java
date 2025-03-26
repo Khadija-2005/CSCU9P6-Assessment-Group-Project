@@ -5,11 +5,26 @@
  * 
  * There should be only one instance of this class.
  */
-public class SystemTimer {
+/*public class SystemTimer {
     private DateAndTime now;
 
     public void incrementTime(int increment) {
         now.setTime(now.getTime() + increment);
         System.out.println("Time incremented.");
+    }
+}*/
+
+class SystemTimer {
+    private int currentTime = 0;
+    
+    public void advanceTime() {
+        currentTime++;
+        if (currentTime == 1) {
+            OFWBSystemDatabase.setSystemState(OFWBSystemDatabase.BOOKINGS_CLOSED);
+        } else if (currentTime == 2) {
+            OFWBSystemDatabase.setSystemState(OFWBSystemDatabase.WORKSHOP_ON);
+        } else if (currentTime == 3) {
+            OFWBSystemDatabase.setSystemState(OFWBSystemDatabase.DORMANT);
+        }
     }
 }
